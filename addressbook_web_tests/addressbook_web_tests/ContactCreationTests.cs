@@ -14,7 +14,7 @@ namespace WebAddressbookTests
         {
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
-            InitContactCretaion();
+            InitContactCreation();
             ContactData contact = new ContactData("000", "AAA@AAA.ru");
             contact.Firstname = "FFF";
             contact.Middlename = "MMM";

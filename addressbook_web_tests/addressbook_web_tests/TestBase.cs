@@ -125,7 +125,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("notes")).Clear();
             driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);
         }
-        protected void InitContactCretaion()
+        protected void InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
         }
