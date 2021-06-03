@@ -12,9 +12,6 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            InitContactCreation();
             ContactData contact = new ContactData("000", "AAA@AAA.ru");
             contact.Firstname = "FFF";
             contact.Middlename = "MMM";
@@ -39,10 +36,8 @@ namespace WebAddressbookTests
             contact.AnniversaryDay = "1";
             contact.AnniversaryMonth = "January";
             contact.AnniversaryYear = "2010";
-            FillContactForm(contact);
-            SubmitContactCreation();
-            ReturnToHomePage();
-            Logout();
+
+            app.Contacts.Create(contact);
         }
     }
 }
