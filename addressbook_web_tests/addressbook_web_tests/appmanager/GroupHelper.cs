@@ -32,8 +32,8 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int index, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            InitGroupModification();
             SelectGroup(index);
+            InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
             ReturnToGroupsPage();

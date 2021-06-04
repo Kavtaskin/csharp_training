@@ -16,7 +16,7 @@ namespace WebAddressbookTests
             contact.Firstname = "FFF";
             contact.Middlename = "MMM";
             contact.Lastname = "LLL";
-            contact.Photo = @"C:\test\test.png";
+            contact.Photo = @"C:\test\1.jpg";
             contact.Title = "TTT";
             contact.Company = "CCC";
             contact.Address = "AAA";
