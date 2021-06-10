@@ -29,8 +29,7 @@ namespace WebAddressbookTests
         }
         public ContactHelper Modify(int index, ContactData newData)
         {
-            SelectContact(index);
-            InitContactModification();
+            InitContactModification(index);
             FillContactForm(newData);
             SubmitContactModification();
             ReturnToHomePage();
@@ -123,9 +122,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification()
+        public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            driver.FindElement(By.XPath("//img[@alt='Edit']["+ index +"]")).Click();
             return this;
         }
 
