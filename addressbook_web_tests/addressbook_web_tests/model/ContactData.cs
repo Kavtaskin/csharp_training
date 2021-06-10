@@ -10,29 +10,29 @@ namespace WebAddressbookTests
     {
         private string nickname;
         private string email;
-        private string firstname = "";
-        private string middlename = "";
-        private string lastname = "";
-        private string photo = "";
-        private string title = "";
-        private string company = "";
-        private string address = "";
-        private string phoneHome = "";
-        private string phoneMobile = "";
-        private string phoneWork = "";
-        private string fax = "";
-        private string email2 = "";
-        private string email3 = "";
-        private string homepage = "";
-        private string address2 = "";
-        private string phoneHome2 = "";
-        private string notes = "";
-        private string birthDay = "";
-        private string birthMonth = "";
-        private string birthYear = "";
-        private string anniversaryDay = "";
-        private string anniversaryMonth = "";
-        private string anniversaryYear = "";
+        private string firstname = null;
+        private string middlename = null;
+        private string lastname = null;
+        private string photo = null;
+        private string title = null;
+        private string company = null;
+        private string address = null;
+        private string phoneHome = null;
+        private string phoneMobile = null;
+        private string phoneWork = null;
+        private string fax = null;
+        private string email2 = null;
+        private string email3 = null;
+        private string homepage = null;
+        private string address2 = null;
+        private string phoneHome2 = null;
+        private string notes = null;
+        private string birthDay = null;
+        private string birthMonth = null;
+        private string birthYear = null;
+        private string anniversaryDay = null;
+        private string anniversaryMonth = null;
+        private string anniversaryYear = null;
 
         public ContactData(string nickname, string email)
         {

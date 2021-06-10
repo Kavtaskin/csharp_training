@@ -29,6 +29,11 @@ namespace WebAddressbookTests
         }
         public ContactHelper Modify(int index, ContactData newData)
         {
+            if (!IsElementPresent(By.CssSelector("img[alt=\"Details\"]")))
+            {
+                ContactData contact = new ContactData("old", "old@AAA.ru");
+                Create(contact);
+            }
             InitContactModification(index);
             FillContactForm(newData);
             SubmitContactModification();
@@ -38,6 +43,11 @@ namespace WebAddressbookTests
 
         public ContactHelper Remove(int index)
         {
+            if (!IsElementPresent(By.CssSelector("img[alt=\"Details\"]")))
+            {
+                ContactData contact = new ContactData("old", "old@AAA.ru");
+                Create(contact);
+            }
             SelectContact(index);
             InitContactRemove();
             SubmitContactRemove();
