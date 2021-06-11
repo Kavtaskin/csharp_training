@@ -14,6 +14,7 @@ namespace WebAddressbookTests
         {
             int ContactIndex = 1;
 
+            app.Contacts.CheckContactExist();
             app.Contacts.Remove(ContactIndex);
         }
     }

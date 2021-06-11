@@ -14,6 +14,7 @@ namespace WebAddressbookTests
         {
             int GroupIndex = 1;
 
+            app.Groups.CheckGroupExist();
             app.Groups.Remove(GroupIndex);
         }
     }

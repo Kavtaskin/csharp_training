@@ -39,6 +39,7 @@ namespace WebAddressbookTests
 
             int ContactIndex = 1;
 
+            app.Contacts.CheckContactExist();
             app.Contacts.Modify(ContactIndex, newData);
         }
     }
