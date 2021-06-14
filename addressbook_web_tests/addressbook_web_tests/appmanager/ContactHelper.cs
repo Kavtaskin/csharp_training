@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace WebAddressbookTests
 {
@@ -26,8 +27,22 @@ namespace WebAddressbookTests
             FillContactForm(contact);
             SubmitContactCreation();
             ReturnToHomePage();
+            Thread.Sleep(1000);
             return this;
         }
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
+            }
+            return contacts;
+        }
+
         public ContactHelper Modify(int index, ContactData newData)
         {
             manager.Navigator.GoToHomePage();
@@ -35,6 +50,7 @@ namespace WebAddressbookTests
             FillContactForm(newData);
             SubmitContactModification();
             ReturnToHomePage();
+            Thread.Sleep(1000);
             return this;
         }
 
@@ -45,6 +61,7 @@ namespace WebAddressbookTests
             InitContactRemove();
             SubmitContactRemove();
             manager.Navigator.GoToHomePage();
+            Thread.Sleep(1000);
             return this;
         }
 
@@ -53,7 +70,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHomePage();
             if (!IsElementPresent(By.CssSelector("img[alt=\"Details\"]")))
             {
-                ContactData contact = new ContactData("old", "old@AAA.ru");
+                ContactData contact = new ContactData("old1", "old");
                 Create(contact);
             }
             return this;
@@ -108,14 +125,14 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//img[@alt='Edit']["+ index +"]")).Click();
+            driver.FindElement(By.XPath("//img[@alt='Edit']["+ (index+1) +"]")).Click();
             return this;
         }
 
         public ContactHelper SelectContact(int index)
         {
             index += 1;
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index+1) + "]/td/input")).Click();
             return this;
         }
         public ContactHelper SubmitContactRemove()

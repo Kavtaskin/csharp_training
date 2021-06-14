@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    public class ContactData
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string nickname;
-        private string email;
-        private string firstname = null;
+        private string firstname;
+        private string lastname;
+        private string nickname = null;
+        private string email = null;
         private string middlename = null;
-        private string lastname = null;
         private string photo = null;
         private string title = null;
         private string company = null;
@@ -34,10 +34,47 @@ namespace WebAddressbookTests
         private string anniversaryMonth = null;
         private string anniversaryYear = null;
 
-        public ContactData(string nickname, string email)
+        public ContactData(string firstname, string lastname)
         {
-            this.nickname = nickname;
-            this.email = email;
+            this.firstname = firstname;
+            this.lastname = lastname;
+        }
+
+        public bool Equals(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return (Firstname == other.Firstname && Lastname == other.Lastname);
+        }
+
+        public override int GetHashCode()
+        {
+            return Firstname.GetHashCode();
+        }
+        public int CompareTo(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+
+            return Lastname.CompareTo(other.Lastname);
+
+        }
+        public override string ToString()
+        {
+            return " FirstName = " + Firstname
+                + "\n Lastname =" + Lastname
+                + "\n Nickname = " + Nickname
+                + "\n Address = " + Address
+                + "\n Email = " + Email
+                + "\n Homepage = " + Homepage;
         }
 
         public string Firstname

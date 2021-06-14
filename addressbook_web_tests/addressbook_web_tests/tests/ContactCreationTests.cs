@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -12,10 +13,10 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("000", "AAA@AAA.ru");
-            contact.Firstname = "FFF";
+            ContactData contact = new ContactData("testFirstname", "testLastname");
+            contact.Nickname = "AAA";
+            contact.Email = "test@test.test";
             contact.Middlename = "MMM";
-            contact.Lastname = "LLL";
             contact.Photo = @"C:\test\1.jpg";
             contact.Title = "TTT";
             contact.Company = "CCC";
@@ -35,9 +36,18 @@ namespace WebAddressbookTests
             contact.BirthYear = "2000";
             contact.AnniversaryDay = "1";
             contact.AnniversaryMonth = "January";
-            contact.AnniversaryYear = "2010";
+            contact.AnniversaryYear = "2010"; 
+
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.Create(contact);
+            oldContacts.Add(contact);
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
