@@ -32,7 +32,7 @@ namespace WebAddressbookTests
         public List<ContactData> GetContactList()
         {
             List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
+            manager.Navigator.GoToHomePage();          
             ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
             foreach (IWebElement element in elements)
             {
@@ -58,7 +58,7 @@ namespace WebAddressbookTests
             SelectContact(index);
             InitContactRemove();
             SubmitContactRemove();
-            manager.Navigator.GoToHomePage();
+            GoToHomeLink();
             return this;
         }
 
@@ -114,6 +114,13 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("home page")).Click();
             return this;
         }
+        public ContactHelper GoToHomeLink()
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+            driver.FindElements(By.Name("entry"));
+            return this;
+        }
+        
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
