@@ -27,7 +27,6 @@ namespace WebAddressbookTests
             FillContactForm(contact);
             SubmitContactCreation();
             ReturnToHomePage();
-            Thread.Sleep(1000);
             return this;
         }
         public List<ContactData> GetContactList()
@@ -50,7 +49,6 @@ namespace WebAddressbookTests
             FillContactForm(newData);
             SubmitContactModification();
             ReturnToHomePage();
-            Thread.Sleep(1000);
             return this;
         }
 
@@ -61,7 +59,6 @@ namespace WebAddressbookTests
             InitContactRemove();
             SubmitContactRemove();
             manager.Navigator.GoToHomePage();
-            Thread.Sleep(1000);
             return this;
         }
 

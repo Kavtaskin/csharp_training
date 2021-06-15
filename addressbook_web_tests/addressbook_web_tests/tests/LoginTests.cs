@@ -29,7 +29,6 @@ namespace WebAddressbookTests
 
             AccountData account = new AccountData("admin", "123456");
             app.Auth.Login(account);
-            Thread.Sleep(1000);
             Assert.IsFalse(app.Auth.IsLoggedIn(account));
         }
     }

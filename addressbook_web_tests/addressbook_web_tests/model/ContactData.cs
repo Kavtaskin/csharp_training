@@ -55,7 +55,7 @@ namespace WebAddressbookTests
 
         public override int GetHashCode()
         {
-            return Firstname.GetHashCode();
+            return Firstname.GetHashCode() + Lastname.GetHashCode();
         }
         public int CompareTo(ContactData other)
         {
@@ -64,7 +64,11 @@ namespace WebAddressbookTests
                 return 1;
             }
 
-            return Lastname.CompareTo(other.Lastname);
+            if (Lastname.CompareTo(other.Lastname) == 0 && Firstname.CompareTo(other.Firstname)== 0)
+            {
+                return 0;
+            }
+            return 1;
 
         }
         public override string ToString()
