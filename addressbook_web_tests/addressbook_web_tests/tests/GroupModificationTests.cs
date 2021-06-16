@@ -22,8 +22,11 @@ namespace WebAddressbookTests
             app.Groups.CheckGroupExist();
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
-            
+            GroupData oldData = oldGroups[GroupIndex];
+
             app.Groups.Modify(GroupIndex, newData);
+
+            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups[GroupIndex].Name = newData.Name;
@@ -31,6 +34,13 @@ namespace WebAddressbookTests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
 
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.Name, group.Name);
+                }
+            }
         }
     }
 }

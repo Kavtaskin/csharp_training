@@ -13,55 +13,84 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = new GroupData("aaa");
-            group.Header = "ddd";
-            group.Footer = "fff";
-            
+            GroupData newGroup = new GroupData("aaa");
+            newGroup.Header = "ddd";
+            newGroup.Footer = "fff";
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Create(group);
+            app.Groups.Create(newGroup);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
+            oldGroups.Add(newGroup);
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
+            Assert.AreEqual(oldGroups, newGroups); 
+            
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == newGroup.Id)
+                {
+                    Assert.AreEqual(newGroup.Name, group.Name);
+                }
+            }
         }
 
         [Test]
         public void EmptyGroupCreationTest()
         {
-            GroupData group = new GroupData("");
-            group.Header = "";
-            group.Footer = "";
+            GroupData newGroup = new GroupData("");
+            newGroup.Header = "";
+            newGroup.Footer = "";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Create(group);
+            app.Groups.Create(newGroup);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
+            oldGroups.Add(newGroup);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == newGroup.Id)
+                {
+                    Assert.AreEqual(newGroup.Name, group.Name);
+                }
+            }
         }
 
         [Test]
         public void BadNameGroupCreationTest()
         {
-            GroupData group = new GroupData("a'a");
-            group.Header = "";
-            group.Footer = "";
+            GroupData newGroup = new GroupData("a'a");
+            newGroup.Header = "";
+            newGroup.Footer = "";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Create(group);
+            app.Groups.Create(newGroup);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
+            oldGroups.Add(newGroup);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == newGroup.Id)
+                {
+                    Assert.AreEqual(newGroup.Name, group.Name);
+                }
+            }
         }
     }
 }

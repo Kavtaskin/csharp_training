@@ -13,41 +13,53 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("testFirstname", "testLastname");
-            contact.Nickname = "AAA";
-            contact.Email = "test@test.test";
-            contact.Middlename = "MMM";
-            contact.Photo = @"C:\test\1.jpg";
-            contact.Title = "TTT";
-            contact.Company = "CCC";
-            contact.Address = "AAA";
-            contact.PhoneHome = "777";
-            contact.PhoneMobile = "888";
-            contact.PhoneWork = "999";
-            contact.Fax = "111";
-            contact.Email2 = "BBB@BBB.ru";
-            contact.Email3 = "CCC@CCC.ru";
-            contact.Homepage = "HHH";
-            contact.Address2 = "A2";
-            contact.PhoneHome2 = "P2";
-            contact.Notes = "NNN";
-            contact.BirthDay = "1";
-            contact.BirthMonth = "January";
-            contact.BirthYear = "2000";
-            contact.AnniversaryDay = "1";
-            contact.AnniversaryMonth = "January";
-            contact.AnniversaryYear = "2010"; 
+            ContactData newContact = new ContactData("testFirstname", "testLastname");
+            newContact.Nickname = "AAA";
+            newContact.Email = "test@test.test";
+            newContact.Middlename = "MMM";
+            newContact.Photo = @"C:\test\1.jpg";
+            newContact.Title = "TTT";
+            newContact.Company = "CCC";
+            newContact.Address = "AAA";
+            newContact.PhoneHome = "777";
+            newContact.PhoneMobile = "888";
+            newContact.PhoneWork = "999";
+            newContact.Fax = "111";
+            newContact.Email2 = "BBB@BBB.ru";
+            newContact.Email3 = "CCC@CCC.ru";
+            newContact.Homepage = "HHH";
+            newContact.Address2 = "A2";
+            newContact.PhoneHome2 = "P2";
+            newContact.Notes = "NNN";
+            newContact.BirthDay = "1";
+            newContact.BirthMonth = "January";
+            newContact.BirthYear = "2000";
+            newContact.AnniversaryDay = "1";
+            newContact.AnniversaryMonth = "January";
+            newContact.AnniversaryYear = "2010"; 
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 
-            app.Contacts.Create(contact);
-            oldContacts.Add(contact);
+            app.Contacts.Create(newContact);
+
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
+
+            oldContacts.Add(newContact);
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
-            
+
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (ContactData contact in newContacts)
+            {
+                if (contact.Id == newContact.Id)
+                {
+                    Assert.AreEqual(newContact.Firstname, contact.Firstname);
+                    Assert.AreEqual(newContact.Lastname, contact.Lastname);
+                }
+            }
         }
     }
 }
