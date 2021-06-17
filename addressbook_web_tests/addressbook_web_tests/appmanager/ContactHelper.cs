@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
@@ -49,6 +50,64 @@ namespace WebAddressbookTests
                 }
             }
             return new List<ContactData>(contactCache);
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
+
+            string lastname = cells[1].Text;
+            string firstname = cells[2].Text;
+            string address = cells[3].Text;
+            string allEmails = cells[4].Text;
+            string allPhones = cells[5].Text;
+
+            return new ContactData(firstname, lastname)
+            {
+                Address = address,
+                AllPhones = allPhones,
+                AllEmails = allEmails
+            };
+        }
+
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(index);
+
+            string firstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string phoneHome = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string phoneMobile = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string phoneWork = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string phoneHome2 = driver.FindElement(By.Name("phone2")).GetAttribute("value");
+
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            return new ContactData(firstname, lastname)
+            {
+                Address = address,
+                PhoneHome = phoneHome,
+                PhoneMobile = phoneMobile,
+                PhoneWork = phoneWork,
+                PhoneHome2 = phoneHome2,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
+            };
+        }
+
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            string text = driver.FindElement(By.Id("search_count")).Text;
+            return Int32.Parse(text);
         }
 
         public int GetContactCount()
