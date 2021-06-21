@@ -11,7 +11,7 @@ namespace WebAddressbookTests
     public class ContactInformationTests : AuthTestBase
     {
         [Test]
-        public void ContactInformationTest()
+        public void ContactInformationOnEditPageTest()
         {
             int ContactIndex = 0;
 
@@ -24,6 +24,19 @@ namespace WebAddressbookTests
             Assert.AreEqual(fromTable.Address, fromForm.Address);
             Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
             Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);
+        }
+
+        [Test]
+        public void ContactInformationOnDetailsPageTest()
+        {
+            int ContactIndex = 1;
+
+            app.Contacts.CheckContactExist();
+
+            string fromDetais = app.Contacts.GetContactInformationFromDetailsPage(ContactIndex);
+            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(ContactIndex);
+            
+            Assert.AreEqual(fromDetais.ToLower(), fromForm.Content.ToLower());
         }
     }
 }

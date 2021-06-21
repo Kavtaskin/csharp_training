@@ -11,6 +11,9 @@ namespace WebAddressbookTests
     {
         private string allPhones;
         private string allEmails;
+        private string content;
+        private string birthDate;
+        private string anniversaryDate;
 
         public ContactData(string firstname, string lastname)
         {
@@ -123,14 +126,39 @@ namespace WebAddressbookTests
             }
         }
 
-        private string CleanUp(string phone)
+        private string CleanUp(string data)
         {
-            if (phone == null || phone == "")
+            if (data == null || data == "")
             {
                 return "";
             }
-            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            return Regex.Replace(data, "[ ()-]", "") + "\r\n";
         }
+        private string CleanUpDate(string date)
+        {
+            if (date == null || date == "")
+            {
+                return "";
+            }
+            return Regex.Replace(date, "(0-)", "");
+        }
+        private string CleanUpAllData(string data)
+        {
+            if (data == null || data == "")
+            {
+                return "";
+            }
+            return Regex.Replace(data, "[ ]|[\\.]|(\\r\\n)", "");
+        }
+        private string FormatEmails(string data)
+        {
+            if (data == null || data == "")
+            {
+                return "";
+            }
+            return data + "\r\n";
+        }
+
         public string AllEmails
         {
             get
@@ -141,12 +169,75 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                    return (FormatEmails(Email) + FormatEmails(Email2) + FormatEmails(Email3)).Trim();
                 }
             }
             set
             {
                 allEmails = value;
+            }
+        }
+
+        public string BirthDate
+        {
+            get
+            {
+                if (birthDate != null)
+                {
+                    return birthDate;
+                }
+                else
+                {
+                    return (CleanUpDate(BirthDay) + CleanUpDate(BirthMonth) + CleanUpDate(BirthYear)).Trim();
+                }
+            }
+            set
+            {
+                birthDate = value;
+            }
+        }
+        public string AnniversaryDate
+        {
+            get
+            {
+                if (anniversaryDate != null)
+                {
+                    return anniversaryDate;
+                }
+                else
+                {
+                    return (CleanUpDate(AnniversaryDay) + CleanUpDate(AnniversaryMonth) + CleanUpDate(AnniversaryYear)).Trim();
+                }
+            }
+            set
+            {
+                anniversaryDate = value;
+            }
+        }
+        public string Content
+        {
+            get
+            {
+                if (content != null)
+                {
+                    return content;
+                }
+                else
+                {
+                    return (CleanUpAllData(Firstname + Middlename + Lastname
+                        + Nickname + Title + Company + Address
+                        + CleanUp(PhoneHome) + CleanUp(PhoneMobile) + CleanUp(PhoneWork) + CleanUp(Fax)
+                        + AllEmails
+                        + Homepage
+                        + BirthDate
+                        + AnniversaryDate
+                        + Address2 + CleanUp(PhoneHome2) + Notes))
+                        .Trim();
+                }
+            }
+            set
+            {
+                content = value;
             }
         }
 
