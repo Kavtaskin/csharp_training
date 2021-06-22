@@ -33,10 +33,10 @@ namespace WebAddressbookTests
             newContact.Notes = "NNN";
             newContact.BirthDay = "1";
             newContact.BirthMonth = "January";
-            newContact.BirthYear = "2000";
+            newContact.BirthYear = "1111";
             newContact.AnniversaryDay = "1";
             newContact.AnniversaryMonth = "January";
-            newContact.AnniversaryYear = "2010"; 
+            newContact.AnniversaryYear = "2222"; 
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 

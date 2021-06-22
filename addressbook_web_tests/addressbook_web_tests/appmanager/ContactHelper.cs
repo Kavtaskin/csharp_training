@@ -59,12 +59,16 @@ namespace WebAddressbookTests
             string content = driver.FindElement(By.Id("content")).Text;
 
             // Удаление высчитанного возраста и годовщины со страницы просмотра информации
+            /*
             var patternForAge = @"(Birthday.*?)(\(\d{1,3}\))(\r\n)";
             var replaced1 = Regex.Replace(content, patternForAge, m => m.Groups[1].Value + "" + m.Groups[3].Value);
             var patternForAnniversary = @"(Anniversary.*?)(\(\d{1,3}\))(\r\n)";
             var replaced2 = Regex.Replace(replaced1, patternForAnniversary, m => m.Groups[1].Value + "" + m.Groups[3].Value);
 
-            return Regex.Replace(replaced2, "(0-)|[-()]|[\\s]|(\\r\\n)|(\\.)|(M:)|(H:)|(W:)|(F:)|(P:)|(Anniversary)|(Homepage:)|(Birthday)", "");
+            Regex.Replace(content, "(0-)|[-()]|[\\s]|(\\r\\n)|(\\.)|(M:)|(H:)|(W:)|(F:)|(P:)|(Anniversary)|(Homepage:)|(Birthday)", "");
+            */
+
+            return content;
         }
 
         public ContactData GetContactInformationFromTable(int index)

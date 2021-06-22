@@ -134,22 +134,7 @@ namespace WebAddressbookTests
             }
             return Regex.Replace(data, "[ ()-]", "") + "\r\n";
         }
-        private string CleanUpDate(string date)
-        {
-            if (date == null || date == "")
-            {
-                return "";
-            }
-            return Regex.Replace(date, "(0-)", "");
-        }
-        private string CleanUpAllData(string data)
-        {
-            if (data == null || data == "")
-            {
-                return "";
-            }
-            return Regex.Replace(data, "[ ]|[\\.]|(\\r\\n)", "");
-        }
+
         private string FormatEmails(string data)
         {
             if (data == null || data == "")
@@ -178,42 +163,6 @@ namespace WebAddressbookTests
             }
         }
 
-        public string BirthDate
-        {
-            get
-            {
-                if (birthDate != null)
-                {
-                    return birthDate;
-                }
-                else
-                {
-                    return (CleanUpDate(BirthDay) + CleanUpDate(BirthMonth) + CleanUpDate(BirthYear)).Trim();
-                }
-            }
-            set
-            {
-                birthDate = value;
-            }
-        }
-        public string AnniversaryDate
-        {
-            get
-            {
-                if (anniversaryDate != null)
-                {
-                    return anniversaryDate;
-                }
-                else
-                {
-                    return (CleanUpDate(AnniversaryDay) + CleanUpDate(AnniversaryMonth) + CleanUpDate(AnniversaryYear)).Trim();
-                }
-            }
-            set
-            {
-                anniversaryDate = value;
-            }
-        }
         public string Content
         {
             get
@@ -224,15 +173,70 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (CleanUpAllData(Firstname + Middlename + Lastname
-                        + Nickname + Title + Company + Address
-                        + CleanUp(PhoneHome) + CleanUp(PhoneMobile) + CleanUp(PhoneWork) + CleanUp(Fax)
-                        + AllEmails
-                        + Homepage
-                        + BirthDate
-                        + AnniversaryDate
-                        + Address2 + CleanUp(PhoneHome2) + Notes))
-                        .Trim();
+                    string alldata = "";
+                    
+                    if (Firstname != null || Middlename != null || Lastname != null || Nickname != null)
+                    {
+                        alldata += Firstname != null ? Firstname + " " : "";
+                        alldata += Middlename != null ? Middlename + " " : "";
+                        alldata += Lastname != null ? Lastname + "\r\n" : "";
+                        alldata += Nickname != null ? Nickname + "\r\n" : "";
+                        alldata += "\r\n";
+                    }
+
+                    alldata += Photo != null ? "\r\n" : "";
+                    
+                    if (Title != null || Company != null || Address != null)
+                    {
+                        alldata += Title != null ? Title + "\r\n" : "";
+                        alldata += Company != null ? Company + "\r\n" : "";
+                        alldata += Address != null ? Address + "\r\n" : "";
+                        alldata += "\r\n";
+                    }
+
+                    if (PhoneHome != null || PhoneMobile != null || PhoneWork != null || Fax != null)
+                    {
+                        alldata += PhoneHome != null ? "H: " + PhoneHome + "\r\n" : "";
+                        alldata += PhoneMobile != null ? "M: " + PhoneMobile + "\r\n" : "";
+                        alldata += PhoneWork != null ? "W: " + PhoneWork + "\r\n" : "";
+                        alldata += Fax != null ? "F: " + Fax + "\r\n" : "";
+                        alldata += "\r\n";
+                    }
+
+                    if (Email != null || Email2 != null || Email3 != null || Homepage != null)
+                    {
+                        alldata += Email != null ? Email + "\r\n" : "";
+                        alldata += Email2 != null ? Email2 + "\r\n" : "";
+                        alldata += Email3 != null ? Email3 + "\r\n" : "";
+                        alldata += Homepage != null ? "Homepage:" + "\r\n" + Homepage + "\r\n" : "";
+                        alldata += "\r\n";
+                    }
+
+                    if (BirthDay != "0" || BirthMonth != "-" || BirthYear != null)
+                    {
+                        alldata += "Birthday ";
+                        alldata += BirthDay != "0" ? BirthDay + ". " : "";
+                        alldata += BirthMonth != "-" ? BirthMonth + " " : "";
+                        alldata += BirthYear != null ? BirthYear : "";
+                        alldata += "\r\n";
+                    }
+
+                    if (AnniversaryDay != "0" || AnniversaryMonth != "-" || AnniversaryYear != null)
+                    {
+                        alldata += "Anniversary ";
+                        alldata += AnniversaryDay != "0" ? AnniversaryDay + ". " : "";
+                        alldata += AnniversaryMonth != "-" ? AnniversaryMonth + " " : "";
+                        alldata += AnniversaryYear != null ? AnniversaryYear : "";
+                        alldata += "\r\n";
+                    }
+
+                    alldata += (BirthDay != "0" || BirthMonth != "-" || BirthYear != null || AnniversaryDay != "0" || AnniversaryMonth != "-" || AnniversaryYear != null) ? "\r\n" : "";
+
+                    alldata += Address2 != null ? Address2 + "\r\n\r\n" : "";
+                    alldata += PhoneHome2 != null ? "P: " + PhoneHome2 + "\r\n\r\n" : "";
+                    alldata += Notes != null ? Notes : "";
+
+                    return alldata;
                 }
             }
             set
@@ -242,7 +246,6 @@ namespace WebAddressbookTests
         }
 
         public string Notes { get; set; }
-
         public string Photo { get; set; }
         public string Id { get; set; }
     }

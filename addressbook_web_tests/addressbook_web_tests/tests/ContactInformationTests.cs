@@ -29,14 +29,14 @@ namespace WebAddressbookTests
         [Test]
         public void ContactInformationOnDetailsPageTest()
         {
-            int ContactIndex = 1;
+            int ContactIndex = 0;
 
             app.Contacts.CheckContactExist();
 
             string fromDetais = app.Contacts.GetContactInformationFromDetailsPage(ContactIndex);
             ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(ContactIndex);
             
-            Assert.AreEqual(fromDetais.ToLower(), fromForm.Content.ToLower());
+            Assert.AreEqual(fromDetais, fromForm.Content);
         }
     }
 }
