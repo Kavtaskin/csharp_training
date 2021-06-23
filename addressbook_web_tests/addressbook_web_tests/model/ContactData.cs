@@ -12,8 +12,6 @@ namespace WebAddressbookTests
         private string allPhones;
         private string allEmails;
         private string content;
-        private string birthDate;
-        private string anniversaryDate;
 
         public ContactData(string firstname, string lastname)
         {
@@ -54,12 +52,32 @@ namespace WebAddressbookTests
         }
         public override string ToString()
         {
-            return " FirstName = " + Firstname
-                + "\n Lastname =" + Lastname
-                + "\n Nickname = " + Nickname
-                + "\n Address = " + Address
-                + "\n Email = " + Email
-                + "\n Homepage = " + Homepage;
+            return "FirstName = " + Firstname 
+                + "\n Lastname = " + Lastname
+                + "\nNickname = " + Nickname
+                + "\nAddress = " + Address 
+                + "\nEmail = " + Email
+                + "\nHomepage = " + Homepage
+                + "\nMiddlename = " + Middlename
+                + "\nPhoto = " + Photo
+                + "\nTitle = " + Title
+                + "\nCompany = " + Company
+                + "\nAddress = " + Address
+                + "\nPhoneHome = " + PhoneHome
+                + "\nPhoneMobile = " + PhoneMobile
+                + "\nPhoneWork = " + PhoneWork
+                + "\nFax = " + Fax
+                + "\nEmail2 = " + Email2
+                + "\nEmail3 = " + Email3
+                + "\nAddress2 = " + Address2
+                + "\nPhoneHome2 = " + PhoneHome2
+                + "\nNotes = " + Notes
+                + "\nBirthDay = " + BirthDay
+                + "\nBirthMonth = " + BirthMonth
+                + "\nBirthYear = " + BirthYear
+                + "\nAnniversaryDay = " + AnniversaryDay
+                + "\nAnniversaryMonth = " + AnniversaryMonth
+                + "\nAnniversaryYear = " + AnniversaryYear;
         }
 
         public string Firstname { get; set; }

@@ -10,41 +10,51 @@ namespace WebAddressbookTests
     [TestFixture]
     public class ContactCreationTests : AuthTestBase
     {
-        [Test]
-        public void ContactCreationTest()
+        public static IEnumerable<ContactData> RandomContactDataProvider()
         {
-            ContactData newContact = new ContactData("testFirstname", "testLastname");
-            newContact.Nickname = "AAA";
-            newContact.Email = "test@test.test";
-            newContact.Middlename = "MMM";
-            newContact.Photo = @"C:\test\1.jpg";
-            newContact.Title = "TTT";
-            newContact.Company = "CCC";
-            newContact.Address = "AAA";
-            newContact.PhoneHome = "777";
-            newContact.PhoneMobile = "888";
-            newContact.PhoneWork = "999";
-            newContact.Fax = "111";
-            newContact.Email2 = "BBB@BBB.ru";
-            newContact.Email3 = "CCC@CCC.ru";
-            newContact.Homepage = "HHH";
-            newContact.Address2 = "A2";
-            newContact.PhoneHome2 = "P2";
-            newContact.Notes = "NNN";
-            newContact.BirthDay = "1";
-            newContact.BirthMonth = "January";
-            newContact.BirthYear = "1111";
-            newContact.AnniversaryDay = "1";
-            newContact.AnniversaryMonth = "January";
-            newContact.AnniversaryYear = "2222"; 
+            List<ContactData> contacts = new List<ContactData>();
+            for (int i = 0; i < 5; i++)
+            {
+                contacts.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30))
+                {
+                    Nickname = GenerateRandomString(100),
+                    Email = GenerateRandomString(100),
+                    Middlename = GenerateRandomString(100),
+                    Photo = @"C:\test\1.jpg",
+                    Title = GenerateRandomString(100),
+                    Company = GenerateRandomString(100),
+                    Address = GenerateRandomString(100),
+                    PhoneHome = GenerateRandomString(100),
+                    PhoneMobile = GenerateRandomString(100),
+                    PhoneWork = GenerateRandomString(100),
+                    Fax = GenerateRandomString(100),
+                    Email2 = GenerateRandomString(100),
+                    Email3 = GenerateRandomString(100),
+                    Homepage = GenerateRandomString(100),
+                    Address2 = GenerateRandomString(100),
+                    PhoneHome2 = GenerateRandomString(100),
+                    Notes = GenerateRandomString(100),
+                    BirthDay = GenerateRandomNumber(0, 31),
+                    BirthMonth = GenerateRandomMonth(),
+                    BirthYear = GenerateRandomNumber(1900, 2021),
+                    AnniversaryDay = GenerateRandomNumber(0, 31),
+                    AnniversaryMonth = GenerateRandomMonth(),
+                    AnniversaryYear = GenerateRandomNumber(1900, 2021)
+                });
+            }
+            return contacts;
+        }
 
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreationTest(ContactData contact)
+        {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 
-            app.Contacts.Create(newContact);
+            app.Contacts.Create(contact);
 
             Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
 
-            oldContacts.Add(newContact);
+            oldContacts.Add(contact);
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
@@ -52,12 +62,12 @@ namespace WebAddressbookTests
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
 
-            foreach (ContactData contact in newContacts)
+            foreach (ContactData newContact in newContacts)
             {
-                if (contact.Id == newContact.Id)
+                if (newContact.Id == contact.Id)
                 {
-                    Assert.AreEqual(newContact.Firstname, contact.Firstname);
-                    Assert.AreEqual(newContact.Lastname, contact.Lastname);
+                    Assert.AreEqual(contact.Firstname, newContact.Firstname);
+                    Assert.AreEqual(contact.Lastname, newContact.Lastname);
                 }
             }
         }
