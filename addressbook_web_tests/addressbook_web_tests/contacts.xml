@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfContactData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ContactData>
+    <Firstname>IX%+_+</Firstname>
+    <Middlename />
+    <Lastname>EE)*U</Lastname>
+    <Nickname>L&gt;H9`(="G</Nickname>
+    <Title>!GL,:`4</Title>
+    <Company>^8V&lt;</Company>
+    <Address>DGT</Address>
+    <PhoneHome>NB$</PhoneHome>
+    <PhoneMobile>H"!&amp;&gt;</PhoneMobile>
+    <PhoneWork>@HL@S(</PhoneWork>
+    <Fax>Y$</Fax>
+    <Email>`N6L[Z%7</Email>
+    <Email2>;` U#%/ </Email2>
+    <Email3>&lt;S&amp;'E</Email3>
+    <Homepage>V_):</Homepage>
+    <BirthDay>16</BirthDay>
+    <BirthMonth>January</BirthMonth>
+    <BirthYear>2008</BirthYear>
+    <AnniversaryDay>22</AnniversaryDay>
+    <AnniversaryMonth>July</AnniversaryMonth>
+    <AnniversaryYear>1929</AnniversaryYear>
+    <Address2>L']7US</Address2>
+    <PhoneHome2>Y#5</PhoneHome2>
+    <AllPhones>NB$
+H"!&amp;&gt;
+@HL@S
+Y#5</AllPhones>
+    <AllEmails>`N6L[Z%7
+;` U#%/ 
+&lt;S&amp;'E</AllEmails>
+    <Content>IX%+_+  EE)*U
+L&gt;H9`(="G
+
+
+!GL,:`4
+^8V&lt;
+DGT
+
+H: NB$
+M: H"!&amp;&gt;
+W: @HL@S(
+F: Y$
+
+`N6L[Z%7
+;` U#%/ 
+&lt;S&amp;'E
+Homepage:
+V_):
+
+Birthday 16. January 2008
+Anniversary 22. July 1929
+
+L']7US
+
+P: Y#5
+
+L</Content>
+    <Notes>L</Notes>
+    <Photo>C:\test\1.jpg</Photo>
+  </ContactData>
+  <ContactData>
+    <Firstname>DT!C"</Firstname>
+    <Middlename>4'</Middlename>
+    <Lastname>:@'(^*!?</Lastname>
+    <Nickname>'4"J </Nickname>
+    <Title>%LJ5OK</Title>
+    <Company>RKE\B;3+</Company>
+    <Address>'*'-"\FM</Address>
+    <PhoneHome>0.Q=#4OOV</PhoneHome>
+    <PhoneMobile>&lt;?I&lt;</PhoneMobile>
+    <PhoneWork>IP=Q</PhoneWork>
+    <Fax>(</Fax>
+    <Email>T7^</Email>
+    <Email2>`IGX%-</Email2>
+    <Email3>C*'^=?=&amp;5</Email3>
+    <Homepage>1-TFYP</Homepage>
+    <BirthDay>6</BirthDay>
+    <BirthMonth>March</BirthMonth>
+    <BirthYear>1963</BirthYear>
+    <AnniversaryDay>24</AnniversaryDay>
+    <AnniversaryMonth>April</AnniversaryMonth>
+    <AnniversaryYear>1931</AnniversaryYear>
+    <Address2>?OQ</Address2>
+    <PhoneHome2>3?VFPK</PhoneHome2>
+    <AllPhones>0.Q=#4OOV
+&lt;?I&lt;
+IP=Q
+3?VFPK</AllPhones>
+    <AllEmails>T7^
+`IGX%-
+C*'^=?=&amp;5</AllEmails>
+    <Content>DT!C" 4' :@'(^*!?
+'4"J 
+
+
+%LJ5OK
+RKE\B;3+
+'*'-"\FM
+
+H: 0.Q=#4OOV
+M: &lt;?I&lt;
+W: IP=Q
+F: (
+
+T7^
+`IGX%-
+C*'^=?=&amp;5
+Homepage:
+1-TFYP
+
+Birthday 6. March 1963
+Anniversary 24. April 1931
+
+?OQ
+
+P: 3?VFPK
+
+(V</Content>
+    <Notes>(V</Notes>
+    <Photo>C:\test\1.jpg</Photo>
+  </ContactData>
+</ArrayOfContactData>

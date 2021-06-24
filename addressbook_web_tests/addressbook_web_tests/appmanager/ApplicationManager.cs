@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
@@ -25,7 +26,8 @@ namespace WebAddressbookTests
 
         private ApplicationManager()
         {
-            driver = new FirefoxDriver();
+            //driver = new FirefoxDriver();
+            driver = new ChromeDriver();
             baseURL = "http://localhost/addressbook/";
             verificationErrors = new StringBuilder();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
