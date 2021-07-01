@@ -59,14 +59,13 @@ namespace WebAddressbookTests
             string content = driver.FindElement(By.Id("content")).Text;
 
             // Удаление высчитанного возраста и годовщины со страницы просмотра информации
-            /*
+
             var patternForAge = @"(Birthday.*?)(\(\d{1,3}\))(\r\n)";
             var replaced1 = Regex.Replace(content, patternForAge, m => m.Groups[1].Value + "" + m.Groups[3].Value);
             var patternForAnniversary = @"(Anniversary.*?)(\(\d{1,3}\))(\r\n)";
             var replaced2 = Regex.Replace(replaced1, patternForAnniversary, m => m.Groups[1].Value + "" + m.Groups[3].Value);
 
             Regex.Replace(content, "(0-)|[-()]|[\\s]|(\\r\\n)|(\\.)|(M:)|(H:)|(W:)|(F:)|(P:)|(Anniversary)|(Homepage:)|(Birthday)", "");
-            */
 
             return content;
         }
@@ -174,6 +173,15 @@ namespace WebAddressbookTests
             ReturnToHomePage();
             return this;
         }
+        public ContactHelper Modify(ContactData oldData, ContactData newData)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(oldData.Id);
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnToHomePage();
+            return this;
+        }
 
         public ContactHelper Remove(int index)
         {
@@ -184,7 +192,15 @@ namespace WebAddressbookTests
             GoToHomeLink();
             return this;
         }
-
+        public ContactHelper Remove(ContactData contact)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContact(contact.Id);
+            InitContactRemove();
+            SubmitContactRemove();
+            GoToHomeLink();
+            return this;
+        }
         public ContactHelper CheckContactExist()
         {
             manager.Navigator.GoToHomePage();
@@ -202,7 +218,7 @@ namespace WebAddressbookTests
             Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("lastname"), contact.Lastname);
             Type(By.Name("nickname"), contact.Nickname);
-            Type(By.XPath("//input[@name='photo']"), contact.Photo);
+            //Type(By.XPath("//input[@name='photo']"), contact.Photo);
             Type(By.Name("company"), contact.Company);
             Type(By.Name("title"), contact.Title);
             Type(By.Name("address"), contact.Address);
@@ -259,6 +275,13 @@ namespace WebAddressbookTests
                 .FindElement(By.TagName("a")).Click();   
             return this;
         }
+        public ContactHelper InitContactModification(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @id='" + id + "'])"))
+                .FindElement(By.XPath("..//..//img[@title='Edit']")).Click();
+            return this;
+        }
+
         public ContactHelper OpenContactDetailsPage(int index)
         {
             driver.FindElements(By.Name("entry"))[index]
@@ -271,6 +294,11 @@ namespace WebAddressbookTests
             driver.FindElements(By.Name("entry"))[index]
                 .FindElements(By.TagName("td"))[0]
                 .FindElement(By.TagName("input")).Click();
+            return this;
+        }
+        public ContactHelper SelectContact(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @id='" + id + "'])")).Click(); ;
             return this;
         }
         public ContactHelper SubmitContactRemove()
