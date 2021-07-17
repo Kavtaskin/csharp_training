@@ -18,8 +18,6 @@ namespace mantis_tests
         protected StringBuilder verificationErrors;
         protected string baseURL;
 
-        public RegistrationHelper Registration { get; private set; }
-
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         private ApplicationManager()
@@ -31,6 +29,8 @@ namespace mantis_tests
             verificationErrors = new StringBuilder();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
             Ftp = new FtpHelper(this);
+            James = new JamesHelper(this);
+            Mail = new MailHelper(this);
         }
 
         ~ApplicationManager()
@@ -65,6 +65,9 @@ namespace mantis_tests
             }
         }
 
-        public FtpHelper Ftp { get; private set; }
+        public RegistrationHelper Registration { get; set; }
+        public FtpHelper Ftp { get; set; }
+        public JamesHelper James { get; set; }
+        public MailHelper Mail { get; set; }
     }
 }

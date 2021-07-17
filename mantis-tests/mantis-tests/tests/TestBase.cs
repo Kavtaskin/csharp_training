@@ -18,14 +18,18 @@ namespace mantis_tests
             app = ApplicationManager.GetInstance();
         }
         public static Random rnd = new Random();
+
         public static string GenerateRandomString(int max)
         {
-            int l = Convert.ToInt32(rnd.NextDouble() * max);
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < l; i++)
+            const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var builder = new StringBuilder();
+
+            for (var i = 0; i < max; i++)
             {
-                builder.Append(Convert.ToChar(32 + Convert.ToInt32(rnd.NextDouble() * 65)));
+                var c = pool[rnd.Next(0, pool.Length)];
+                builder.Append(c);
             }
+
             return builder.ToString();
         }
 
