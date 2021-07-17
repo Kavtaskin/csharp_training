@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoItX3Lib;
 
-namespace addressbook_tests_autoit
+namespace addressbook_tests_autoit_net
 {
     public class ApplicationManager
     {
@@ -13,6 +13,7 @@ namespace addressbook_tests_autoit
 
         private AutoItX3 aux;
         private GroupHelper groupHelper;
+        private ContactHelper contactHelper;
         public ApplicationManager()
         {
             aux = new AutoItX3();
@@ -22,6 +23,7 @@ namespace addressbook_tests_autoit
             aux.WinWaitActive(WINTITLE);
 
             groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
         }
 
         public void Stop()
@@ -42,6 +44,13 @@ namespace addressbook_tests_autoit
             get
             {
                 return groupHelper;
+            }
+        }
+        public ContactHelper Contacts
+        {
+            get
+            {
+                return contactHelper;
             }
         }
     }

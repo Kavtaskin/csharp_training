@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoItX3Lib;
 
 
-namespace addressbook_tests_autoit
+namespace addressbook_tests_autoit_net
 {
     public class HelperBase
     {
