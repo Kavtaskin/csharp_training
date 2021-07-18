@@ -24,7 +24,7 @@ namespace mantis_project_tests
             };
 
             List<ProjectData> oldProjects = app.Project.GetProjectList();
-            app.Project.CreateProject(project);
+            app.Project.Create(project);
 
             List<ProjectData> newProjects = app.Project.GetProjectList();
             oldProjects.Add(project);

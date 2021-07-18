@@ -10,6 +10,7 @@ namespace addressbook_tests_autoit_net
     public class TestBase
     {
         public ApplicationManager app;
+        public static Random rnd = new Random();
 
         [TestFixtureSetUp]
         public void initApplication()
@@ -21,6 +22,20 @@ namespace addressbook_tests_autoit_net
         public void stopApplication()
         {
             app.Stop();
+        }
+
+        public static string GenerateRandomString(int max)
+        {
+            const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var builder = new StringBuilder();
+
+            for (var i = 0; i < max; i++)
+            {
+                var c = pool[rnd.Next(0, pool.Length)];
+                builder.Append(c);
+            }
+
+            return builder.ToString();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace mantis_project_tests
             return projects;
         }
 
-        public void CreateProject(ProjectData project)
+        public void Create(ProjectData project)
         {
             manager.Navigator.OpenManagmentPage();
             manager.Navigator.OpenProjectManagmentPage();
@@ -63,7 +63,7 @@ namespace mantis_project_tests
             {
                 return;
             }
-            CreateProject(project);
+            Create(project);
         }
 
         public void Delete(int index)

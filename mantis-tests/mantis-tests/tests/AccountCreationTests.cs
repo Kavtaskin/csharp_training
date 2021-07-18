@@ -27,6 +27,7 @@ namespace mantis_tests
         public void TestAccountRegistration()
         {
             string username = GenerateRandomString(5);
+
             AccountData account = new AccountData()
             {
                 Name = username,
@@ -34,6 +35,13 @@ namespace mantis_tests
                 Email = username + "@localhost.localdomain"
             };
 
+            /*List<AccountData> accounts = app.Admin.GetAllAccounts();
+            AccountData existingAccount = accounts.Find(x => x.Name == account.Name);
+            if (existingAccount != null)
+            {
+                app.Admin.DeleteAccount(account);
+            }
+            */
             app.James.Delete(account);
             app.James.Add(account);
 

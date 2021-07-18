@@ -3,13 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Collections.Generic;
+using NUnit.Framework;
+using TestStack.White;
+using TestStack.White.InputDevices;
+using TestStack.White.UIItems;
+using TestStack.White.UIItems.Finders;
+using TestStack.White.UIItems.TreeItems;
+using TestStack.White.UIItems.WindowItems;
+using TestStack.White.WindowsAPI;
+using System.Windows.Automation;
+using System.Linq;
+using System;
+using TestStack.White.UIItems.TableItems;
 
 namespace addressbook_tests_autoit_net
 {
     public class ContactHelper : HelperBase
     {
-        public static string CONTACTWINTITLE = "Contact editor";
+        public static string CONTACTWINTITLE = "Contact Editor";
         public ContactHelper(ApplicationManager manager) : base(manager) { }
 
         public List<ContactData> GetContactList()
@@ -17,6 +29,7 @@ namespace addressbook_tests_autoit_net
             List<ContactData> list = new List<ContactData>();
             string count = aux.ControlTreeView(WINTITLE, "", "WindowsForms10.Window.8.app.0.2c908d510",
                 "GetItemCount", "#0", "");
+            string count1 = aux.C
             for (int i = 0; i < int.Parse(count); i++)
             {
                 string item = aux.ControlTreeView(WINTITLE, "", "WindowsForms10.Window.8.app.0.2c908d510", "GetText", "#0|#" + i, "");
@@ -27,6 +40,46 @@ namespace addressbook_tests_autoit_net
                 });
             }
             return list;
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> list = new List<ContactData>();
+            Table table = manager.MainWindow.Get<Table>("uxAddressGrid");
+
+            foreach (TableRow row in table.Rows)
+            {
+
+                list.Add(new ContactData()
+                {
+                    Firstname = row.Cells[0].Value.ToString(),
+                    Lastname = row.Cells[1].Value.ToString()
+                });
+
+            }
+
+            return list;
+        }
+
+        public void CreateContactIfNotExist()
+        {
+            if (!ContactIfNotExist())
+            {
+                ContactData newContact = new ContactData()
+                {
+                    Firstname = "newContact",
+                    Lastname = "(не определено)",
+                };
+                Create(newContact);
+            }
+        }
+
+        private bool ContactIfNotExist()
+        {
+            Table table = manager.MainWindow.Get<Table>("uxAddressGrid");
+            if (table.Rows.Count == 0)
+                return false;
+            else return true;
         }
 
         public ContactHelper Remove(int v)

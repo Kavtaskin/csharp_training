@@ -17,7 +17,7 @@ namespace addressbook_tests_autoit_net
 
             ContactData newContact = new ContactData()
             {
-                Firstname = "test"
+                Firstname = GenerateRandomString(5)
             };
 
             app.Contacts.Add(newContact);
