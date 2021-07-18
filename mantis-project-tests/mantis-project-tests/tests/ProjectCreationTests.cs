@@ -23,10 +23,13 @@ namespace mantis_project_tests
                 ProjectDescription = projectDescription
             };
 
-            List<ProjectData> oldProjects = app.Project.GetProjectList();
+            //List<ProjectData> oldProjects = app.Project.GetProjectList();
+            List<ProjectData> oldProjects = app.API.GetProjectList(new AccountData("administrator", "root"));
             app.Project.Create(project);
 
-            List<ProjectData> newProjects = app.Project.GetProjectList();
+            //List<ProjectData> newProjects = app.Project.GetProjectList();
+            List<ProjectData> newProjects = app.API.GetProjectList(new AccountData("administrator", "root"));
+       
             oldProjects.Add(project);
 
             oldProjects.Sort();
